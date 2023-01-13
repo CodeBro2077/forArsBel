@@ -1,28 +1,62 @@
-import { useState } from 'react';
-import './index.scss';
+import React, { useState } from "react";
+import './css/style.css'
 
-function App() {
+import Result from "./components/Result";
+import Game from "./components/Game";
 
-  const [count, setCount] = useState(0);
 
-  const increment = () => {
-    setCount(count + 1)
-  }
+const App = () => {
+  const [questions, setQuestions] = useState([
+    {
+      title: 'React - это...',
+      variants: ['Фреймворк', 'Библиотека ', 'это жаба скрипт'],
+      correct: 1
+    },
+    {
+      title: 'Компоненты в реакте это',
+      variants: ['Ответ номер 1', 'Ответ номер 2 ', 'это жаба скрипт'],
+      correct: 2
+    },
+    {
+      title: 'Функциональный лучше классового',
+      variants: ['Да', 'Нет ', 'это жаба скрипт'],
+      correct: 0
+    },
+  ])
 
-  const decrement = () => {
-    setCount(count - 1)
+  const [step, setStep] = useState(0)
+  const [correct, setCorrect] = useState(0)
+  const question = questions[step]
+
+  const handlerClick = (id) => {
+    setStep(step + 1)
+
+
+    if (id === question.correct) {
+      setCorrect(correct + 1)
+    }
+
   }
 
   return (
-    <div className="App">
-      <div>
-        <h2>Счетчик:</h2>
-        <h1>{count}</h1>
-        <button onClick={decrement} className="minus">- Минус</button>
-        <button onClick={increment} className="plus">Плюс +</button>
-      </div>
+    <div className="wrapper">
+
+      {step !== questions.length ?
+
+        (<Game
+          step={step}
+          questions={questions}
+          question={question}
+          handlerClick={handlerClick} />)
+
+        :
+
+        (<Result
+          questions={questions}
+          correct={correct} />)}
+
     </div>
-  );
+  )
 }
 
 export default App;
