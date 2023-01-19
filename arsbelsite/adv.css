@@ -1,0 +1,28 @@
+.adv {
+    padding: 20px 0;
+    margin-top: 100px;
+    background: #eff3f8;
+
+}
+
+.adv__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.adv__block {}
+
+.block-adv__title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 15px;
+
+}
+
+.block-adv__description {}
+
+.block-adv__img {
+    width: 30px;
+    margin-bottom: 5px;
+}
